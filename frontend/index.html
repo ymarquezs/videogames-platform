@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Explora el catálogo y registra tus videojuegos favoritos."
+    />
+    <title>GameVault | Catálogo de videojuegos</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <script src="js/app.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#" aria-label="GameVault, inicio">
+        <span class="brand-mark" aria-hidden="true">G</span>
+        <span>GameVault</span>
+      </a>
+      <a class="header-link" href="#add-game">Añadir videojuego <span aria-hidden="true">↗</span></a>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="page-title">
+        <p class="eyebrow"><span class="status-dot"></span> TU COLECCIÓN, EN UN SOLO LUGAR</p>
+        <h1 id="page-title">Encuentra tu<br /><span>siguiente aventura.</span></h1>
+        <p class="hero-copy">
+          Explora el catálogo, descubre nuevos mundos y guarda los juegos que
+          quieres jugar.
+        </p>
+        <a class="button button-primary" href="#catalog">Explorar catálogo <span aria-hidden="true">↓</span></a>
+        <div class="hero-orbit orbit-one" aria-hidden="true"></div>
+        <div class="hero-orbit orbit-two" aria-hidden="true"></div>
+        <div class="hero-spark" aria-hidden="true">✦</div>
+      </section>
+
+      <section class="catalog section-wrap" id="catalog" aria-labelledby="catalog-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">LA BIBLIOTECA</p>
+            <h2 id="catalog-title">Juegos destacados</h2>
+          </div>
+          <p class="game-count" id="game-count" aria-live="polite">Cargando juegos…</p>
+        </div>
+        <p class="notice" id="notice" role="status" aria-live="polite"></p>
+        <div class="game-grid" id="game-list" aria-live="polite"></div>
+      </section>
+
+      <section class="add-section section-wrap" id="add-game" aria-labelledby="form-title">
+        <div class="form-intro">
+          <p class="eyebrow">AMPLÍA TU BIBLIOTECA</p>
+          <h2 id="form-title">¿Qué estás jugando?</h2>
+          <p>Añade un título y ten tu colección siempre a mano.</p>
+        </div>
+        <form class="game-form" id="game-form">
+          <label>
+            Título
+            <input name="title" type="text" maxlength="100" placeholder="Ej. Celeste" required />
+          </label>
+          <div class="form-row">
+            <label>
+              Género
+              <select name="genre" required>
+                <option value="" disabled selected>Elige un género</option>
+                <option>Acción</option>
+                <option>Aventura</option>
+                <option>Estrategia</option>
+                <option>Deportes</option>
+                <option>RPG</option>
+                <option>Otro</option>
+              </select>
+            </label>
+            <label>
+              Plataforma
+              <input name="platform" type="text" maxlength="50" placeholder="Ej. PC" required />
+            </label>
+          </div>
+          <label>
+            Año de lanzamiento
+            <input name="release_year" type="number" min="1950" max="2100" placeholder="Ej. 2018" required />
+          </label>
+          <label>
+            Descripción <span class="optional">(opcional)</span>
+            <textarea name="description" rows="3" maxlength="500" placeholder="¿Qué hace especial a este juego?"></textarea>
+          </label>
+          <button class="button button-primary submit-button" type="submit">Añadir a mi colección <span aria-hidden="true">+</span></button>
+        </form>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <a class="brand footer-brand" href="#"><span class="brand-mark" aria-hidden="true">G</span><span>GameVault</span></a>
+      <p>Hecho para quienes siempre tienen una partida pendiente.</p>
+    </footer>
+  </body>
+</html>
