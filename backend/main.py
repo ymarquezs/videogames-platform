@@ -1,4 +1,4 @@
-from fastapi import FastAPI, status
+from fastapi import FastAPI, status, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
 from backend.database import create_game, list_games
@@ -34,3 +34,16 @@ def get_games() -> list[Game]:
 )
 def post_game(game_data: GameSchema) -> Game:
     return create_game(Game(id=0, **game_data.model_dump()))
+
+
+# --- Módulo de Reseñas (Feature B) ---
+@app.post("/api/games/{game_id}/review")
+def review_game(game_id: int, comment: str):
+    if not comment or len(comment.strip()) == 0:
+        game = next((g for g in list_games() if g.id == game_id), None)
+      
+        raise HTTPException(status_code=400, detail="El comentario no puede estar vacio")
+    
+    if not game:
+        raise HTTPException(status_code=404, detail="Videojuego no encontrado")
+    return {"game_id": game_id, "comment": comment.strip(), "status": "resena publicada"}
