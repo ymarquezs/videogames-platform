@@ -24,3 +24,4 @@ class GameSchema(BaseModel):
 
 class Game(GameSchema):
     id: int
+    rating: int | None = Field(default=None, ge=1, le=5)

@@ -1,8 +1,8 @@
-from fastapi import FastAPI, status
+from fastapi import FastAPI, status, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
-from backend.database import create_game, list_games
-from backend.models import Game, GameSchema
+from backend.database import create_game, list_games, set_game_rating
+from backend.models import Game, GameSchema 
 
 app = FastAPI(
     title="Videogames Platform API - Por YMS",
@@ -34,3 +34,12 @@ def get_games() -> list[Game]:
 )
 def post_game(game_data: GameSchema) -> Game:
     return create_game(Game(id=0, **game_data.model_dump()))
+
+@app.post("/api/games/{game_id}/rate")
+def rate_game(game_id: int, rating: int):
+    if rating < 1 or rating > 5:
+        raise HTTPException(status_code=400, detail="La calificacion debe ser entre 1 y 5")
+    if set_game_rating(game_id, rating) is None:
+        raise HTTPException(status_code=404, detail="Videojuego no encontrado")
+    return {"game_id": game_id, "rating": rating, "status": "calificacion registrada"}
+

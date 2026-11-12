@@ -32,3 +32,11 @@ def create_game(game_data: Game) -> Game:
     _next_id += 1
     _games.append(game)
     return game
+
+def set_game_rating(game_id: int, rating: int) -> Game | None:
+    for index, game in enumerate(_games):
+        if game.id == game_id:
+            updated_game = game.model_copy(update={"rating": rating})
+            _games[index] = updated_game
+            return updated_game
+    return None
